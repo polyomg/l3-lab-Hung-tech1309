@@ -13,7 +13,7 @@
 <th:block th:each="staff : ${list}">
     <label>
         <input type="radio" name="rdo" th:value="${staff.id}">
-        <th:block th:text="${staff.fullname}"></th:block>
+        <th:block th:text="${staff.fullname}"></th:block>//
     </label>
     <br>
 </th:block>

@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Data
+@Data//
 public class Staff {
 
     @NotBlank(message = "Chưa nhập email")

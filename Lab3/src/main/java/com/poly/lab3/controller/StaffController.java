@@ -19,7 +19,7 @@ public class StaffController {
                 .level(2)
                 .build();
         model.addAttribute("staff", staff);
-        return "staff-detail";
+        return "staff-detail";//
     }
 
     @RequestMapping("/staff/list")
