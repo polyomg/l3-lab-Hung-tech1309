@@ -11,7 +11,7 @@ public class ParamController {
 
     @RequestMapping("/param/form")
     public String form() {
-        return "form"; // trỏ tới form.html
+        return "form"; // trỏ tới form.htm
     }
 
     @RequestMapping("/param/save/{x}")

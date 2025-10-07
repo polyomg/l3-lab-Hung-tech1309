@@ -30,7 +30,7 @@ public class ProductController {
         return "product_form";
     }
 
-    // Lưu sản phẩm khi submit form
+    // Lưu sản phẩm khi submit for
     @PostMapping("/product/save")
     public String save(Model model, @ModelAttribute("product") Product p) {
         items.add(p);

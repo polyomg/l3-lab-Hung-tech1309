@@ -12,7 +12,7 @@ public class OkController {
 
     @RequestMapping("/ok")
     public String ok() {
-        return "ok"; // trỏ tới ok.html
+        return "ok"; // trỏ tới ok.htm
     }
 
     @PostMapping("/ok")

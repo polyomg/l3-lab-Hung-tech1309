@@ -39,4 +39,4 @@ public class MessageConfig implements WebMvcConfigurer {
         interceptor.setParamName("lang"); // tham số ?lang=vi hoặc ?lang=en
         registry.addInterceptor(interceptor);
     }
-}
+}//
