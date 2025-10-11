@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Giỏ hàng</title>
+</head>
+<body>
+<h2>Giỏ hàng của bạn</h2>
+
+<!-- Nếu giỏ hàng rỗng -->
+<div th:if="${#lists.isEmpty(items)}">
+  <p>Chưa có sản phẩm nào trong giỏ hàng.</p>
+  <a th:href="@{/item/index}">⬅ Quay lại mua hàng</a>
+</div>
+
+<!-- Nếu có sản phẩm -->
+<div th:if="${!#lists.isEmpty(items)}">
+  <table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tên sản phẩm</th>
+      <th>Đơn giá</th>
+      <th>Số lượng</th>
+      <th>Thành tiền</th>
+      <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}" th:if="${item != null}">
+      <td th:text="${item.id}">1</td>
+      <td th:text="${item.name}">Tên</td>
+      <td th:text="${item.price}">0</td>
+      <td>
+        <form th:action="@{'/cart/update/' + ${item.id}}" method="post">
+          <input type="number" name="qty" min="1" th:value="${item.qty}" style="width:50px">
+          <button type="submit">Cập nhật</button>
+        </form>
+      </td>
+      <td th:text="${item.price * item.qty}">0</td>
+      <td>
+        <a th:href="@{'/cart/remove/' + ${item.id}}">Xóa</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <p><b>Tổng số lượng:</b> <span th:text="${cart.count}">0</span></p>
+  <p><b>Tổng tiền:</b> <span th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 2, 'POINT')}"></span></p>
+
+  <a th:href="@{/cart/clear}">🗑 Xóa tất cả</a> |
+  <a th:href="@{/item/index}">⬅ Tiếp tục mua hàng</a>
+</div>
+
+</body>
+</html>
