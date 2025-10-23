@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>SEARCH & PAGE</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .pagination a { margin: 0 5px; text-decoration: none; }
+    .disabled { pointer-events: none; opacity: 0.5; }
+  </style>
+</head>
+<body>
+<h1>SEARCH & PAGE</h1>
+
+<form action="/product/search-and-page" method="get">
+  <input name="keywords" th:value="${keywords}" placeholder="Enter keyword">
+  <button>Search</button>
+</form>
+
+<table border="1" style="width:100%">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="item : ${page.content}">
+    <td th:text="${item.id}"></td>
+    <td th:text="${item.name}"></td>
+    <td th:text="${#numbers.formatDecimal(item.price, 0, 'COMMA', 2, 'POINT')}"></td>
+    <td th:text="${#dates.format(item.createDate, 'yyyy-MM-dd')}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="pagination" style="margin-top: 15px;">
+  <a th:href="@{/product/search-and-page(p=0, keywords=${keywords})}"
+     th:class="${page.first ? 'disabled' : ''}">First</a>
+
+  <a th:href="@{/product/search-and-page(p=${page.number - 1}, keywords=${keywords})}"
+     th:class="${page.first ? 'disabled' : ''}">Previous</a>
+
+  <a th:href="@{/product/search-and-page(p=${page.number + 1}, keywords=${keywords})}"
+     th:class="${page.last ? 'disabled' : ''}">Next</a>
+
+  <a th:href="@{/product/search-and-page(p=${page.totalPages - 1}, keywords=${keywords})}"
+     th:class="${page.last ? 'disabled' : ''}">Last</a>
+</div>
+
+<ul style="list-style-type: none; padding-left: 0;">
+  <li>Số thực thể hiện tại: [[${page.numberOfElements}]]</li>
+  <li>Trang số: [[${page.number}]]</li>
+  <li>Kích thước trang: [[${page.size}]]</li>
+  <li>Tổng số thực thể: [[${page.totalElements}]]</li>
+  <li>Tổng số trang: [[${page.totalPages}]]</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang chủ</title>
+</head>
+<body>
+<h2>Chào mừng đến với trang chủ!</h2>
+
+<!-- Hiển thị thông báo đăng nhập -->
+<p th:if="${msg}" th:text="${msg}" style="color:green; font-weight:bold;"></p>
+
+<hr>
+<a th:href="@{/account/login}">Đăng nhập</a> |
+<a th:href="@{/item/index}">Xem danh sách hàng hóa</a> |
+<a th:href="@{/cart/view}">Xem giỏ hàng</a>
+
+</body>
+</html>
